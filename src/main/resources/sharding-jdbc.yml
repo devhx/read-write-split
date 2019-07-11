@@ -1,0 +1,23 @@
+dataSources:
+  #配置主数据库
+  ds_master: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1/t_master?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: tiger123
+    #配置主数据库
+  ds_slave: !!com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://127.0.0.1/t_master?characterEncoding=UTF-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: tiger123
+
+masterSlaveRule:
+  name: ds_ms
+  #主数据库的数据源名字
+  masterDataSourceName: ds_master
+  #从数据库的数据源名字，数组
+  slaveDataSourceNames: [ds_slave]
+
+props:
+  sql.show: true
